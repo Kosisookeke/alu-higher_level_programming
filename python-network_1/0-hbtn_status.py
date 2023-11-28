@@ -1,15 +1,26 @@
 #!/usr/bin/python3
-"""Displays the X-Request-Id header variable of a request to a given URL.
-
-Usage: ./1-hbtn_header.py <URL>
+# 0-hbtn_status.py
+"""This module or script
+fetches https://alu-intranet.hbtn.io/status
+using the urllib library
 """
-import sys
-import urllib.request
 
 
-if __name__ == "__main__":
-    url = sys.argv[1]
+from urllib import request, error
 
-    request = urllib.request.Request(url)
-    with urllib.request.urlopen(request) as response:
-        print(dict(response.headers).get("X-Request-Id"))
+try:
+    url = 'https://intranet.hbtn.io/status'
+    with request.urlopen(url) as response:
+        response_body = response.read()
+        response_text = response_body.decode('utf-8')
+        print("Body response:")
+        print("\t- type:", type(response_body))
+        print("\t- content:", response_body)
+        print("\t- utf8 content:", response_text)
+except error.URLError:
+    custom_status = bytes("Custom status", encoding="utf-8")
+    custom_status_text = custom_status.decode('utf-8')
+    print("Body response:")
+    print("\t- type:", type(custom_status))
+    print("\t- content:", custom_status)
+    print("\t- utf8 content:", custom_status_text)
