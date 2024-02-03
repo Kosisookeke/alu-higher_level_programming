@@ -1,3 +1,1 @@
-# javascript
-## author
-Kosisookeke
+0-rectangle.js

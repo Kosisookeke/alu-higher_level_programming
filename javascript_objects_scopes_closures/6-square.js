@@ -1,15 +1,12 @@
 #!/usr/bin/node
-const previousclass = require('./5-square');
-
-class Square extends previousclass {
+module.exports = class Square extends require('./5-square.js') {
   charPrint (c) {
-    if (c !== undefined) {
+    if (c === undefined) {
+      this.print();
+    } else {
       for (let i = 0; i < this.height; i++) {
         console.log(c.repeat(this.width));
       }
-    } else {
-      this.print();
     }
   }
-}
-module.exports = Square;
+};
